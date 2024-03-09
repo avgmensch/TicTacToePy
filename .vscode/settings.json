@@ -7,5 +7,9 @@
     },
     "[makefile]": {
         "editor.rulers": [100]
-    }
+    },
+    "cSpell.words": [
+        "gameloop",
+        "tictactoe"
+    ]
 }
