@@ -1,4 +1,4 @@
-from .constants import PLAYER, COMPUTER, Tile, Board
+from .constants import PLAYER, COMPUTER, FIELD_WORTH, Tile, Board
 from .helper import ttt_get_available_moves, ttt_check_winner, ttt_get_opposite_turn
 
 
@@ -60,7 +60,9 @@ def ttt_get_best_move(board: Board, turn: Tile) -> tuple[int, int]:
         board[y][x] = old
         if (
             (turn == PLAYER and s < best_score) or
-            (turn == COMPUTER and s > best_score)
+            (turn == COMPUTER and s > best_score) or
+            (s == best_score and FIELD_WORTH[y][x] >
+             FIELD_WORTH[best_move[1]][best_move[0]])
         ):
             best_score = s
             best_move = (x, y)
