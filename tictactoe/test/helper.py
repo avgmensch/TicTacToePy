@@ -27,7 +27,7 @@ class TestValidateTilePlaceAttempt(TestCase):
         except Invalid2dIndexException:
             return
         raise Exception()
-    
+
     def test_index_is_occupied(self):
         b = ttt_generate_board()
         b[1][1] = PLAYER
@@ -56,7 +56,7 @@ class TestConvert1dTo2d(TestCase):
     def test_index_first_tile(self):
         res = ttt_convert_1d_to_2d(0)
         self.assertEqual(res, (0, 0))
-    
+
     def test_index_second_tile(self):
         res = ttt_convert_1d_to_2d(1)
         self.assertEqual(res, (1, 0))
