@@ -23,7 +23,7 @@ def ttt_game() -> tuple[int, int]:
                         print(error_message)
                     i1d = ttt_get_valid_1d_index(f"{turn}>")
                     if i1d == -1:
-                        return (0, 0)
+                        return (-1, -1)
                     ix2d, iy2d = ttt_convert_1d_to_2d(i1d)
                     ttt_validate_tile_place_attempt(board, ix2d, iy2d)
                     board[iy2d][ix2d] = turn
@@ -35,6 +35,7 @@ def ttt_game() -> tuple[int, int]:
                     continue
                 except Exception as e:
                     raise e
+                print()
                 break
         elif turn == COMPUTER:
             x, y = ttt_get_best_move(board, COMPUTER)
@@ -45,8 +46,9 @@ def ttt_game() -> tuple[int, int]:
         if winner == PLAYER:
             return (1, 0)
         elif winner == COMPUTER:
+            ttt_print_board(board)
+            print()
             return (0, 1)
         elif winner is None:
             return (0, 0)
         turn = ttt_get_opposite_turn(turn)
-        print()
