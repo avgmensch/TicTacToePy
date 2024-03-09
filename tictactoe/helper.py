@@ -18,8 +18,7 @@ def ttt_get_valid_1d_index(msg: str = "") -> int:
             i = int(input(msg).strip())
             if i == -1:
                 return i
-            if 1 <= i <= 9:
-                return i - 1
+            return i - 1
         except ValueError:
             continue
         except Exception as e:
