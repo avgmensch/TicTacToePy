@@ -1,0 +1,11 @@
+{
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.typeCheckingMode": "strict",
+    "[python]": {
+        "editor.tabSize": 4,
+        "editor.rulers": [79]
+    },
+    "[makefile]": {
+        "editor.rulers": [100]
+    }
+}
