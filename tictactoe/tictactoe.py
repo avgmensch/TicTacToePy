@@ -1,8 +1,9 @@
 from .constants import COMPUTER, PLAYER, Tile
 from .exceptions import Invalid2dIndexException, \
     TileAtIndexAlreadyOccupiedException
-from .helper import ttt_check_winner, ttt_get_valid_1d_index, ttt_generate_board, \
-    ttt_print_board, ttt_validate_tile_place_attempt, ttt_get_opposite_turn, ttt_convert_1d_to_2d
+from .helper import ttt_check_winner, ttt_get_valid_1d_index, \
+    ttt_generate_board, ttt_print_board, ttt_validate_tile_place_attempt, \
+    ttt_get_opposite_turn, ttt_convert_1d_to_2d
 from .minimax import ttt_get_best_move
 
 

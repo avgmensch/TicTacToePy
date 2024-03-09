@@ -1,5 +1,6 @@
 from .constants import PLAYER, COMPUTER, FIELD_WORTH, Tile, Board
-from .helper import ttt_get_available_moves, ttt_check_winner, ttt_get_opposite_turn
+from .helper import ttt_get_available_moves, ttt_check_winner, \
+    ttt_get_opposite_turn
 
 
 def minimax(board: Board, turn: Tile, depth: int = 0) -> int:
