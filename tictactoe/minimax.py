@@ -58,7 +58,6 @@ def ttt_get_best_move(board: Board, turn: Tile) -> tuple[int, int]:
         board[y][x] = turn
         s = minimax(board, ttt_get_opposite_turn(turn))
         board[y][x] = old
-        print(s)
         if (
             (turn == PLAYER and s < best_score) or
             (turn == COMPUTER and s > best_score)
