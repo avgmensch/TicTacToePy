@@ -1,9 +1,32 @@
 from unittest import TestCase
-from ..constants import PLAYER, COMPUTER
+from ..constants import EMPTY, PLAYER, COMPUTER
 from ..exceptions import Invalid2dIndexException, \
     TileAtIndexAlreadyOccupiedException
 from ..helper import ttt_generate_board, ttt_validate_tile_place_attempt, \
-    ttt_get_opposite_turn, ttt_convert_1d_to_2d
+    ttt_are_moves_remaining, ttt_get_opposite_turn, ttt_convert_1d_to_2d
+
+
+# ===========================
+# The TicTacToe board
+# ===========================
+
+
+class TestAreMovesRemaining(TestCase):
+    def test_empty_board(self):
+        b = ttt_generate_board()
+        res = ttt_are_moves_remaining(b)
+        self.assertTrue(res)
+
+    def test_not_full_board(self):
+        b = ttt_generate_board(PLAYER)
+        b[2][2] = EMPTY
+        res = ttt_are_moves_remaining(b)
+        self.assertTrue(res)
+
+    def test_full_board(self):
+        b = ttt_generate_board(PLAYER)
+        res = ttt_are_moves_remaining(b)
+        self.assertFalse(res)
 
 
 # ===========================

@@ -30,12 +30,12 @@ def ttt_get_valid_1d_index(msg: str = "") -> int:
 # ===========================
 
 
-def ttt_generate_board() -> Board:
+def ttt_generate_board(sym: Tile = EMPTY) -> Board:
     """Get an empty 3x3 TicTacToe board."""
     return (
-        [EMPTY, EMPTY, EMPTY],
-        [EMPTY, EMPTY, EMPTY],
-        [EMPTY, EMPTY, EMPTY]
+        [sym, sym, sym],
+        [sym, sym, sym],
+        [sym, sym, sym]
     )
 
 
@@ -58,6 +58,54 @@ def ttt_validate_tile_place_attempt(board: Board, x: int, y: int):
     if board[y][x] != EMPTY:
         raise TileAtIndexAlreadyOccupiedException(
             "The tile at board[{y}][{x}] does not equal EMPTY.")
+
+
+def ttt_are_moves_remaining(board: Board) -> bool:
+    for y in range(3):
+        for x in range(3):
+            if board[y][x] == EMPTY:
+                return True
+    return False
+
+
+def ttt_get_available_moves(board: Board) -> list[tuple[int, int]]:
+    """Returns [(x, y), (x, y), ...]"""
+    available_moves: list[tuple[int, int]] = []
+    for y in range(3):
+        for x in range(3):
+            if board[y][x] == EMPTY:
+                available_moves.append((x, y))
+    return available_moves
+
+
+# ===========================
+# Check for winner
+# ===========================
+
+
+def ttt_check_winner(board: Board) -> Tile | None:
+    # Vertical and horizontal
+    for yx in range(3):
+        # Horizontal
+        if board[yx][0] == board[yx][1] == board[yx][2] != EMPTY:
+            return board[yx][0]
+        # Vertical
+        if board[0][yx] == board[1][yx] == board[2][yx] != EMPTY:
+            return board[0][yx]
+
+    # Diagonal
+    if board[1][1] != EMPTY and (
+        board[0][0] == board[1][1] == board[2][2] or
+        board[0][2] == board[1][1] == board[2][0]
+    ):
+        return board[1][1]
+
+    # Tie
+    if not ttt_are_moves_remaining(board):
+        return None
+
+    # Game still going
+    return EMPTY
 
 
 # ===========================
